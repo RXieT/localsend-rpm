@@ -2,6 +2,7 @@ name: Build linux rpm
 
 on:
   workflow_dispatch:
+  workflow_call:
 
 env:
   FLUTTER_VERSION: "3.41.9"
@@ -22,6 +23,7 @@ jobs:
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
   build_rpm:
+    needs: build
     runs-on: ubuntu-latest
     container: fedora:38
     steps:
